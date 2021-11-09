@@ -1,5 +1,5 @@
 <?php
-/* Copyright (C) 2021 SuperAdmin <test@cest.com>
+/* Copyright (C) 2021 Florian HENRY <florian.hery@scopen.fr>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

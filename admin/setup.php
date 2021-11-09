@@ -1,6 +1,6 @@
 <?php
 /* Copyright (C) 2004-2017 Laurent Destailleur  <eldy@users.sourceforge.net>
- * Copyright (C) 2021 SuperAdmin <test@cest.com>
+ * Copyright (C) 2021 Florian HENRY <florian.hery@scopen.fr>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -75,8 +75,8 @@ $scandir = GETPOST('scan_dir', 'alpha');
 $type = 'myobject';
 
 $arrayofparameters = array(
-	'PROPAGATEDOCUMENT_MYPARAM1'=>array('type'=>'string', 'css'=>'minwidth500' ,'enabled'=>1),
-	'PROPAGATEDOCUMENT_MYPARAM2'=>array('type'=>'textarea','enabled'=>1),
+	//'PROPAGATEDOCUMENT_MYPARAM1'=>array('type'=>'string', 'css'=>'minwidth500' ,'enabled'=>1),
+	//'PROPAGATEDOCUMENT_MYPARAM2'=>array('type'=>'textarea','enabled'=>1),
 	//'PROPAGATEDOCUMENT_MYPARAM3'=>array('type'=>'category:'.Categorie::TYPE_CUSTOMER, 'enabled'=>1),
 	//'PROPAGATEDOCUMENT_MYPARAM4'=>array('type'=>'emailtemplate:thirdparty', 'enabled'=>1),
 	//'PROPAGATEDOCUMENT_MYPARAM5'=>array('type'=>'yesno', 'enabled'=>1),

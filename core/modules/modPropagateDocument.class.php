@@ -2,7 +2,7 @@
 /* Copyright (C) 2004-2018  Laurent Destailleur     <eldy@users.sourceforge.net>
  * Copyright (C) 2018-2019  Nicolas ZABOURI         <info@inovea-conseil.com>
  * Copyright (C) 2019-2020  Frédéric France         <frederic.france@netlogic.fr>
- * Copyright (C) 2021 SuperAdmin <test@cest.com>
+ * Copyright (C) 2021 Florian HENRY <florian.hery@scopen.fr>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -115,11 +115,11 @@ class modPropagateDocument extends DolibarrModules
 			),
 			// Set here all hooks context managed by module. To find available hook context, make a "grep -r '>initHooks(' *" on source code. You can also set hook context to 'all'
 			'hooks' => array(
-				//   'data' => array(
-				//       'hookcontext1',
+				   'data' => array(
+				       'ordercard',
 				//       'hookcontext2',
-				//   ),
-				//   'entity' => '0',
+				   ),
+				   'entity' => '0',
 			),
 			// Set this to 1 if features of module are opened to external users
 			'moduleforexternal' => 0,
@@ -144,7 +144,7 @@ class modPropagateDocument extends DolibarrModules
 		$this->langfiles = array("propagatedocument@propagatedocument");
 
 		// Prerequisites
-		$this->phpmin = array(5, 6); // Minimum version of PHP required by module
+		$this->phpmin = array(7, 0); // Minimum version of PHP required by module
 		$this->need_dolibarr_version = array(11, -3); // Minimum version of Dolibarr required by module
 
 		// Messages at activation
@@ -264,7 +264,7 @@ class modPropagateDocument extends DolibarrModules
 		$r = 0;
 		// Add here entries to declare new permissions
 		/* BEGIN MODULEBUILDER PERMISSIONS */
-		$this->rights[$r][0] = $this->numero . sprintf("%02d", $r + 1); // Permission id (must not be already used)
+		/*$this->rights[$r][0] = $this->numero . sprintf("%02d", $r + 1); // Permission id (must not be already used)
 		$this->rights[$r][1] = 'Read objects of PropagateDocument'; // Permission label
 		$this->rights[$r][4] = 'myobject';
 		$this->rights[$r][5] = 'read'; // In php code, permission will be checked by test if ($user->rights->propagatedocument->myobject->read)
@@ -278,7 +278,7 @@ class modPropagateDocument extends DolibarrModules
 		$this->rights[$r][1] = 'Delete objects of PropagateDocument'; // Permission label
 		$this->rights[$r][4] = 'myobject';
 		$this->rights[$r][5] = 'delete'; // In php code, permission will be checked by test if ($user->rights->propagatedocument->myobject->delete)
-		$r++;
+		$r++;*/
 		/* END MODULEBUILDER PERMISSIONS */
 
 		// Main menu entries to add
