@@ -159,11 +159,6 @@ class ActionsPropagateDocument
 
 				}
 			}
-
-
-
-
-
 		}
 
 		return 0;
