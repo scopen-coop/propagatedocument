@@ -125,17 +125,19 @@ class ActionsPropagateDocument
 	 *                                          =0 if OK but we want to process standard actions too,
 	 *                                          >0 if OK and we want to replace standard actions.
 	 */
-	public function addMoreActionsButtons(&$parameters, &$object, &$action, $hookmanager) {
+	public function addMoreActionsButtons(&$parameters, &$object, &$action, $hookmanager)
+	{
 
 		global $conf, $user, $langs;
 		global $hookmanager;
 
-		$outputlangs = $langs;
 		$ret = 0;
 		dol_syslog(get_class($this).'::executeHooks action='.$action);
+		$currentcontext = explode(':', $parameters['context']);
 
-		if (in_array($parameters['currentcontext'], array('ordercard'))) {
-
+		if (in_array('ordercard', $currentcontext)) {
+			$langs->load('propagatedocument@propagatedocument');
+			require_once DOL_DOCUMENT_ROOT . '/core/lib/files.lib.php';
 			//If file exists
 			$org = $conf->commande->multidir_output[isset($object->entity) ? $object->entity :$conf->entity] . '/' . dol_sanitizeFileName($object->ref);
 			$file_list = dol_dir_list($org, 'files');
@@ -147,16 +149,30 @@ class ActionsPropagateDocument
 					//$this->errors[] = $object->error;
 					return 0;
 				}
-				if (!empty($object->linkedObjects) && is_array($object->linkedObjects)) {
-					foreach ($object->linkedObjects as $type => $dataByType) {
-						foreach ($dataByType as $linkedObject) {
-							//print '<a class="butAction" href="' . $_SERVER['PHP_SELF'] . '?id=' . $object->id . '&action=factoryreciept&level=1">' . $langs->trans('factoryreciept') . '</a>';
-						}
-					}
-				}
-				//Create button that display popup with row file colum doclink
-				foreach ($file_list as $files) {
 
+				if (!empty($object->linkedObjects) && is_array($object->linkedObjects)) {
+					//print '<a class="butAction" href="' . $_SERVER['PHP_SELF'] . '?id=' . $object->id . '&action=propagatedoc">' . $langs->trans('PropagateDoc') . '</a>';
+					print'<div class="inline-block divButAction"><a href="javascript:propagateCheck()" class="butAction">' . $langs->trans('PropagateDoc') . '</a></div>';
+					print '<script type="text/javascript">';
+					print '
+					function propagateCheck() {
+						$div = $(\'<div id="propagatedocdiv" style="overflow: hidden" title="'.$langs->trans('PropagateDoc').'">';
+					print '<iframe width="100%" height="100%" src="'.dol_buildpath('/propagatedocument/propagate.php', 2).'?id=' . $object->id.'&element='.$object->element.'"></iframe>';
+					print '</div>\');
+						$div.dialog({
+							modal: true
+							, autoOpen: true
+							, resizable: true
+							, width: Math.max($(window).width() - 500,1000)
+							, height: Math.max($(window).height() - 300,600)
+							//, close: function () {
+							//	document.location.reload(true);
+							//}
+						});
+					};
+
+					';
+					print '</script>';
 				}
 			}
 		}
