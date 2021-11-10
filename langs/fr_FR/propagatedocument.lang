@@ -60,3 +60,5 @@ ConfirmPropagate=Propagation vers...
 CannotFindDestPath= Impossible de trouvez le dossier de destination
 FileDeleted = Fichier %s supprimé de %s
 FileCopied = Fichier %s copié dans %s
+
+PropagateDocHelp = Cochez les cases pour copier les fichiers, Décochez les cases pour les supprimer

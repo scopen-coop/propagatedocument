@@ -76,11 +76,9 @@ if ($action=='propagate') {
 					}
 					$resultCopy = dol_copy($data['filesrcfullpath'], $data['destfilepath'].'/'.$data['file']);
 					if ($resultCopy<0) {
-						var_dump($data['filesrcfullpath']);
-						var_dump($data['destfilepath'].'/'.$data['file']);
 						setEventMessage($langs->trans('ErrorFailToCopyFile'), 'errors');
 					} else {
-						setEventMessage($langs->trans('FileCopied',$data['file'],$data['ref']));
+						setEventMessage($langs->trans('FileCopied', $data['file'], $data['ref']));
 					}
 				}
 			} else {
@@ -100,9 +98,13 @@ if ($action=='propagate') {
 
 top_htmlhead('', '');
 
+
+
 print '<div class="fichecenter">';
 
 print load_fiche_titre($langs->trans("PropagateDoc"), '', 'title_setup');
+
+print '<div class="divsearchfieldfilter">'.$langs->trans('PropagateDocHelp').'</div>';
 
 $res = 0;
 if (!empty($id)) {
@@ -133,6 +135,8 @@ if (!empty($id)) {
 				print '<form method="post" action="' . $_SERVER["PHP_SELF"] . '">';
 				print '<input type="hidden" name="token" value="' . newToken() . '">';
 				print '<input type="hidden" name="action" value="propagate">';
+				print '<input type="hidden" name="id" value="'.$id.'">';
+				print '<input type="hidden" name="element" value="'.$element.'">';
 				print '<table class="noborder centpercent">';
 				foreach ($object->linkedObjects as $type => $dataByType) {
 					print '<tr class="liste_titre">';
@@ -190,8 +194,6 @@ if (!empty($id)) {
 
 		print '<input type="hidden" name="data_all" value="'.htmlentities(json_encode($dataAll)).'">';
 		print '<div class="center">' . "\n";
-		//print dolGetButtonAction($langs->trans("Cancel"), '', 'default', '' . 'cancel', '', 1);
-		//print dolGetButtonAction($langs->trans("Copy"), '', 'default', '' . 'valid', '', 1);
 		print '<input class="button button-save" type="submit" value="' . $langs->trans("Copy").'/'.$langs->trans("Delete") . '">';
 		print '</div>' . "\n";
 		print '</form>' . "\n";
