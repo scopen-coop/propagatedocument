@@ -162,7 +162,7 @@ if (!empty($id)) {
 							} elseif ($linkedObject->element == 'invoice_supplier') {
 								$destdir_element = $conf->fournisseur->facture->multidir_output[isset($linkedObject->entity) ? $linkedObject->entity : $conf->entity];
 							} else {
-								$destdir_element = $destdir_element = $conf->{$linkedObject->element}->multidir_output[isset($linkedObject->entity) ? $linkedObject->entity : $conf->entity];
+								$destdir_element = $conf->{$linkedObject->element}->multidir_output[isset($linkedObject->entity) ? $linkedObject->entity : $conf->entity];
 							}
 							if (!empty($destdir_element)) {
 								$destdir = $destdir_element . '/' . dol_sanitizeFileName($linkedObject->ref);
