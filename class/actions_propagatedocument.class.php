@@ -129,12 +129,10 @@ class ActionsPropagateDocument
 	{
 
 		global $conf, $user, $langs;
-		global $hookmanager;
 
 		$ret = 0;
 		dol_syslog(get_class($this).'::executeHooks action='.$action);
 		$currentcontext = explode(':', $parameters['context']);
-
 		if (in_array('ordercard', $currentcontext)) {
 			$langs->load('propagatedocument@propagatedocument');
 			require_once DOL_DOCUMENT_ROOT . '/core/lib/files.lib.php';
