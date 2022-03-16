@@ -131,7 +131,6 @@ if (!empty($id)) {
 			}
 
 			if (empty($error)) {
-
 				print '<form method="post" action="' . $_SERVER["PHP_SELF"] . '">';
 				print '<input type="hidden" name="token" value="' . newToken() . '">';
 				print '<input type="hidden" name="action" value="propagate">';

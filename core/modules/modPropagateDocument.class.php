@@ -19,14 +19,14 @@
  */
 
 /**
- * 	\defgroup   propagatedocument     Module PropagateDocument
+ *    \defgroup   propagatedocument     Module PropagateDocument
  *  \brief      PropagateDocument module descriptor.
  *
  *  \file       htdocs/propagatedocument/core/modules/modPropagateDocument.class.php
  *  \ingroup    propagatedocument
  *  \brief      Description and activation file for module PropagateDocument
  */
-include_once DOL_DOCUMENT_ROOT.'/core/modules/DolibarrModules.class.php';
+include_once DOL_DOCUMENT_ROOT . '/core/modules/DolibarrModules.class.php';
 
 /**
  *  Description and activation class for module PropagateDocument
@@ -68,8 +68,8 @@ class modPropagateDocument extends DolibarrModules
 		$this->descriptionlong = "PropagateDocumentDescription";
 
 		// Author
-		$this->editor_name = 'Editor name';
-		$this->editor_url = 'https://www.example.com';
+		$this->editor_name = 'Scopen';
+		$this->editor_url = 'https://www.scopen.fr';
 
 		// Possible values for version are: 'development', 'experimental', 'dolibarr', 'dolibarr_deprecated' or a version string like 'x.y.z'
 		$this->version = '1.0';
@@ -77,7 +77,7 @@ class modPropagateDocument extends DolibarrModules
 		//$this->url_last_version = 'http://www.example.com/versionmodule.txt';
 
 		// Key used in llx_const table to save module status enabled/disabled (where PROPAGATEDOCUMENT is value of property name of module in uppercase)
-		$this->const_name = 'MAIN_MODULE_'.strtoupper($this->name);
+		$this->const_name = 'MAIN_MODULE_' . strtoupper($this->name);
 
 		// Name of image file used for this module.
 		// If file is in theme/yourtheme/img directory under name object_pictovalue.png, use this->picto='pictovalue'
@@ -88,38 +88,40 @@ class modPropagateDocument extends DolibarrModules
 		// Define some features supported by module (triggers, login, substitutions, menus, css, etc...)
 		$this->module_parts = array(
 			// Set this to 1 if module has its own trigger directory (core/triggers)
-			'triggers' => 0,
+			'triggers'          => 0,
 			// Set this to 1 if module has its own login method file (core/login)
-			'login' => 0,
+			'login'             => 0,
 			// Set this to 1 if module has its own substitution function file (core/substitutions)
-			'substitutions' => 0,
+			'substitutions'     => 0,
 			// Set this to 1 if module has its own menus handler directory (core/menus)
-			'menus' => 0,
+			'menus'             => 0,
 			// Set this to 1 if module overwrite template dir (core/tpl)
-			'tpl' => 0,
+			'tpl'               => 0,
 			// Set this to 1 if module has its own barcode directory (core/modules/barcode)
-			'barcode' => 0,
+			'barcode'           => 0,
 			// Set this to 1 if module has its own models directory (core/modules/xxx)
-			'models' => 0,
+			'models'            => 0,
 			// Set this to 1 if module has its own printing directory (core/modules/printing)
-			'printing' => 0,
+			'printing'          => 0,
 			// Set this to 1 if module has its own theme directory (theme)
-			'theme' => 0,
+			'theme'             => 0,
 			// Set this to relative path of css file if module has its own css file
-			'css' => array(
-				//    '/propagatedocument/css/propagatedocument.css.php',
+			'css'               => array(//    '/propagatedocument/css/propagatedocument.css.php',
 			),
 			// Set this to relative path of js file if module must load a js on all pages
-			'js' => array(
-				//   '/propagatedocument/js/propagatedocument.js.php',
+			'js'                => array(//   '/propagatedocument/js/propagatedocument.js.php',
 			),
 			// Set here all hooks context managed by module. To find available hook context, make a "grep -r '>initHooks(' *" on source code. You can also set hook context to 'all'
-			'hooks' => array(
-				   'data' => array(
-				       'ordercard',
-				//       'hookcontext2',
-				   ),
-				   'entity' => '0',
+			'hooks'             => array(
+				'data'   => array(
+					'ordercard',
+					/*'propalcard',
+					'invoicecard',
+					'ordersuppliercard',
+					'supplier_proposalcard',
+					'invoicesuppliercard',*/
+				),
+				'entity' => '0',
 			),
 			// Set this to 1 if features of module are opened to external users
 			'moduleforexternal' => 0,
@@ -136,7 +138,7 @@ class modPropagateDocument extends DolibarrModules
 		// A condition to hide module
 		$this->hidden = false;
 		// List of module class names as string that must be enabled if this module is enabled. Example: array('always1'=>'modModuleToEnable1','always2'=>'modModuleToEnable2', 'FR1'=>'modModuleToEnableFR'...)
-		$this->depends = array();
+		$this->depends = array('modCommande');
 		$this->requiredby = array(); // List of module class names as string to disable if this one is disabled. Example: array('modModuleToDisable1', ...)
 		$this->conflictwith = array(); // List of module class names as string this module is in conflict with. Example: array('modModuleToDisable1', ...)
 
@@ -145,7 +147,7 @@ class modPropagateDocument extends DolibarrModules
 
 		// Prerequisites
 		$this->phpmin = array(7, 0); // Minimum version of PHP required by module
-		$this->need_dolibarr_version = array(11, -3); // Minimum version of Dolibarr required by module
+		$this->need_dolibarr_version = array(14, -3); // Minimum version of Dolibarr required by module
 
 		// Messages at activation
 		$this->warnings_activation = array(); // Warning to show when we activate module. array('always'='text') or array('FR'='textfr','ES'='textes'...)
@@ -404,8 +406,8 @@ class modPropagateDocument extends DolibarrModules
 	 *  The init function add constants, boxes, permissions and menus (defined in constructor) into Dolibarr database.
 	 *  It also creates data directories
 	 *
-	 *  @param      string  $options    Options when enabling module ('', 'noboxes')
-	 *  @return     int             	1 if OK, 0 if KO
+	 * @param string $options Options when enabling module ('', 'noboxes')
+	 * @return     int                1 if OK, 0 if KO
 	 */
 	public function init($options = '')
 	{
@@ -429,8 +431,8 @@ class modPropagateDocument extends DolibarrModules
 	 *  Remove from database constants, boxes and permissions from Dolibarr database.
 	 *  Data directories are not deleted
 	 *
-	 *  @param      string	$options    Options when enabling module ('', 'noboxes')
-	 *  @return     int                 1 if OK, 0 if KO
+	 * @param string $options Options when enabling module ('', 'noboxes')
+	 * @return     int                 1 if OK, 0 if KO
 	 */
 	public function remove($options = '')
 	{
