@@ -56,3 +56,13 @@ MyWidgetDescription = My widget description
 # Card
 #
 PropagateDoc=Prop. Doc
+#
+# Card
+#
+PropagateDoc=Prop. Doc
+ConfirmPropagate=propagated to...
+CannotFindDestPath= Cannot find destination path
+FileDeleted = File %s delete from %s
+FileCopied = file %s copyed to %s
+
+PropagateDocHelp = Check the checkboxes to copy files, un-check them to delete the files
