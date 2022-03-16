@@ -2,7 +2,7 @@
 
 ## Features
 
-Allow to copy or delete linked doc from one order to all other object linked
+Allow to copy or delete linked attached files from one order to all other object linked
 
 <!--
 ![Screenshot propagatedocument](img/screenshot_propagatedocument.png?raw=true "PropagateDocument"){imgmd}
