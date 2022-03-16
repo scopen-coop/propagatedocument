@@ -55,7 +55,7 @@ MyWidgetDescription = My widget description
 #
 # Card
 #
-PropagateDoc=Prop. Doc
+PropagateDoc=Propa. Doc
 ConfirmPropagate=Propagation vers...
 CannotFindDestPath= Impossible de trouvez le dossier de destination
 FileDeleted = Fichier %s supprimé de %s
